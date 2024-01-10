@@ -1,0 +1,17 @@
+# n is prime
+
+def EEA(a,b):
+    if b==0:
+        return (a,1,0)
+    else:
+        (d_prev, x_prev, y_prev) = EEA(b, a % b)
+        (d, x, y) = (d_prev, y_prev, x_prev - (a//b)*y_prev)
+        return (d, x, y)
+
+def modularInverse1(a, n):
+    (d, x, y) = EEA(a, n)
+    return x % n
+    
+n = 17
+for i in range(1,n):
+    print(f"{i}^(-1) = {modularInverse1(i,n)} mod {n}")
